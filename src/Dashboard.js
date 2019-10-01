@@ -19,7 +19,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import MeusDatasets from './MeusDatasets'
+import MeusDatasets from './MeusDatasets';
+import Inferencia from './Inferencia';
 
 import { mainListItems, secondaryListItems } from './listItems';
 
@@ -158,7 +159,7 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            IntelligenCell
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -189,6 +190,7 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Route path="/dashboard/" exact="true" component={MeusDatasets} />
+            <Route path="/dashboard/inferencia" exact="true" component={Inferencia} />
           </Grid>
         </Container>
         <Copyright />
