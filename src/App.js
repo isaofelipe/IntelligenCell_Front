@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import {Link as LinkTo} from 'react-router-dom';
+import { Link as LinkTo } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
-    backgroundImage: 'url(https://source.unsplash.com/user/erondu)',
+    // backgroundImage: 'url(https://source.unsplash.com/user/erondu)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -98,16 +98,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const sections = [
-  'Technology',
-  'Design',
-  'Culture',
-  'Business',
-  'Politics',
-  'Opinion',
-  'Science',
-  'Health',
-  'Style',
-  'Travel',
+  'Página principal',
+  'Sobre'
 ];
 
 const featuredPosts = [
@@ -154,7 +146,7 @@ export default function App() {
         <Toolbar className={classes.toolbar}>
           <Button size="small">Subscribe</Button>
           <img src={logo} alt="logo" width="250em" align="center" />
-          <LinkTo to="/dashboard/"><Button variant="outlined" size="small">
+          <LinkTo to="/dashboard/" style={{ textDecoration: 'none' }}><Button variant="outlined" size="small">
             Entrar
           </Button></LinkTo>
         </Toolbar>
@@ -188,15 +180,16 @@ export default function App() {
                 <Grid item md={6}>
                   <div className={classes.mainFeaturedPostContent}>
                     <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                      Title of a longer featured blog post
+                      Classificação Celular simplificada
                   </Typography>
                     <Typography variant="h5" color="inherit" paragraph>
-                      Multiple lines of text that form the lede, informing new readers quickly and
-                      efficiently about what&apos;s most interesting in this post&apos;s contents.
+                      Analise suas amostras com Redes Neurais pré-treinadas ou treine a sua própria
                   </Typography>
-                    <Link variant="subtitle1" href="#">
-                      Continue reading…
-                  </Link>
+                    <LinkTo to="/dashboard/" style={{ textDecoration: 'none' }}>
+                      <Link variant="subtitle1">
+                        Comece já
+                      </Link>
+                    </LinkTo>
                   </div>
                 </Grid>
               </Grid>

@@ -21,6 +21,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import MeusDatasets from './MeusDatasets';
 import Inferencia from './Inferencia';
+import DatasetsPublicos from './DatasetsPublicos';
+import Historico from './Historico';
 
 import { mainListItems, secondaryListItems } from './listItems';
 
@@ -191,6 +193,8 @@ export default function Dashboard() {
           <Grid container spacing={3}>
             <Route path="/dashboard/" exact="true" component={MeusDatasets} />
             <Route path="/dashboard/inferencia" exact="true" component={Inferencia} />
+            <Route path="/dashboard/datasetspublicos" exact="true" component={DatasetsPublicos} />
+            <Route path="/dashboard/historico" exact="true" component={Historico} />
           </Grid>
         </Container>
         <Copyright />
