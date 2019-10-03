@@ -71,9 +71,9 @@ const useStyles = makeStyles(theme => ({
                 Análise
                 </Button>
               </LinkTo>
-              <Button size="small" color="secondary">
+              {/* <Button size="small" color="secondary">
                 Treino
-                </Button>
+                </Button> */}
             </CardActions>
           </Card>
         </Grid>
