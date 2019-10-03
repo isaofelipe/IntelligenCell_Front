@@ -92,9 +92,12 @@ const useStyles = makeStyles(theme => ({
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(8),
+    marginTop: 'auto',
     padding: theme.spacing(6, 0),
   },
+  root: {
+    minHeight: '100vh',
+  }
 }));
 
 const sections = [
@@ -140,8 +143,8 @@ export default function App() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-      <CssBaseline />
+    <div className={classes.root}>
+      <CssBaseline/>
       <Container maxWidth="lg">
         <Toolbar className={classes.toolbar}>
           <Button size="small">Subscribe</Button>
@@ -213,6 +216,6 @@ export default function App() {
         </Container>
       </footer>
       {/* End footer */}
-    </React.Fragment>
+    </div>
   );
 }

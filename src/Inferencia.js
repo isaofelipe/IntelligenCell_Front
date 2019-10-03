@@ -67,7 +67,7 @@ export default function Inferencia() {
       <Paper className={classes.root}>
         <Toolbar>
           <Typography variant="h6" id="tableTitle">
-            Análise Apoptose
+            Apoptose - Análise
           </Typography>
         </Toolbar>
         <Grid container spacing={3} className={classes.form}>

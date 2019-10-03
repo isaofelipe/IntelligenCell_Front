@@ -25,13 +25,14 @@ import DatasetsPublicos from './DatasetsPublicos';
 import Historico from './Historico';
 
 import { mainListItems, secondaryListItems } from './listItems';
+import Treino from './Treino';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        IntelligenCell
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -193,6 +194,7 @@ export default function Dashboard() {
           <Grid container spacing={3}>
             <Route path="/dashboard/" exact="true" component={MeusDatasets} />
             <Route path="/dashboard/inferencia" exact="true" component={Inferencia} />
+            <Route path="/dashboard/treino" exact="true" component={Treino} />
             <Route path="/dashboard/datasetspublicos" exact="true" component={DatasetsPublicos} />
             <Route path="/dashboard/historico" exact="true" component={Historico} />
           </Grid>
