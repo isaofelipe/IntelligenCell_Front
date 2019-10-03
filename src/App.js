@@ -10,7 +10,8 @@ import { Link as LinkTo } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import logo from './images/logo.png'
+import logo from './images/logo.png';
+import {Link as LinkInto, animationScroll as scroll} from 'react-scroll';
 
 function Copyright() {
   return (
@@ -66,6 +67,10 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(6),
       paddingRight: 0,
     },
+  },
+  conteudoSobre: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
   },
   mainGrid: {
     marginTop: theme.spacing(3),
@@ -144,13 +149,21 @@ export default function App() {
       <CssBaseline />
       <Container maxWidth="lg">
         <Toolbar className={classes.toolbar}>
-          <Button size="small">Subscribe</Button>
-          <img src={logo} alt="logo" width="250em" align="center" />
+          <LinkTo to="#">
+            <img src={logo} alt="logo" width="250em" align="center" />
+          </LinkTo>
+          <LinkTo to="/free/" style={{ textDecoration: 'none' }}><Button size="small">
+            Análise gratuita
+          </Button></LinkTo>
+          <LinkInto to="section2" smooth={true} offset={-70} duration={1000}>
+            <Button size="small">Sobre</Button>
+          </LinkInto>
+          <Button variant="outlined" size="small">Cadastre-se</Button>
           <LinkTo to="/dashboard/" style={{ textDecoration: 'none' }}><Button variant="outlined" size="small">
             Entrar
           </Button></LinkTo>
         </Toolbar>
-        <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
+        {/*<Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
           {sections.map(section => (
             <Link
               color="inherit"
@@ -163,7 +176,7 @@ export default function App() {
               {section}
             </Link>
           ))}
-        </Toolbar>
+        </Toolbar>*/}
         <main>
           <BrowserRouter>
             <Paper className={classes.mainFeaturedPost}>
@@ -185,14 +198,29 @@ export default function App() {
                     <Typography variant="h5" color="inherit" paragraph>
                       Analise suas amostras com Redes Neurais pré-treinadas ou treine a sua própria
                   </Typography>
-                    <LinkTo to="/dashboard/" style={{ textDecoration: 'none' }}>
-                      <Link variant="subtitle1">
-                        Comece já
-                      </Link>
+                    <LinkTo to="/free/" style={{ textDecoration: 'none' }}><Link variant="subtitle1">
+                        Teste gratuito
+                    </Link>
                     </LinkTo>
                   </div>
                 </Grid>
               </Grid>
+            </Paper>
+            <Paper className={classes.conteudoSobre} id="section2">
+                <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                  Sobre
+                </Typography>
+                <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                  Inteligencell é uma opção simples para que profissionais da área biomédica possam realizar
+                  análises de imagens de microscopia por meio de uma inteligência artificial que classificará um
+                  dataset de células/substâncias. Basta que ele escolha as imagens que quer analisar, fornecendo algumas
+                  informações e a ferramenta cuidará do resto. Em alguns minutos será entregue o dataset classificado.
+                  Este sistema contém uma versão gratuita, que realiza uma análise simples e entrega
+                  o resultado com poucos detalhes. Já a versão paga permite que o usuário realize um número ilimitado
+                  de analises que serão salvas em sua conta. Existirá também nesta versão a possibilidade de salvar
+                  os seus datasets, consultar datasets públicos e realizar análises que retornarão mais detalhes
+                  sobre os objetos processados nas imagens, incluindo gráficos e estatísticas.
+                </Typography>
             </Paper>
             {/* <Switch>
             <Route path="/" exact={true} component={Inicio} />
