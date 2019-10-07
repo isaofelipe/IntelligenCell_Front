@@ -12,12 +12,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import MeusDatasets from './MeusDatasets';
 import Inferencia from './Inferencia';
@@ -192,11 +191,11 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <Route path="/dashboard/" exact="true" component={MeusDatasets} />
-            <Route path="/dashboard/inferencia" exact="true" component={Inferencia} />
-            <Route path="/dashboard/treino" exact="true" component={Treino} />
-            <Route path="/dashboard/datasetspublicos" exact="true" component={DatasetsPublicos} />
-            <Route path="/dashboard/historico" exact="true" component={Historico} />
+            <Route path="/dashboard/" exact={true} component={MeusDatasets} />
+            <Route path="/dashboard/inferencia" exact={true} component={Inferencia} />
+            <Route path="/dashboard/treino" exact={true} component={Treino} />
+            <Route path="/dashboard/datasetspublicos" exact={true} component={DatasetsPublicos} />
+            <Route path="/dashboard/historico" exact={true} component={Historico} />
           </Grid>
         </Container>
         <Copyright />

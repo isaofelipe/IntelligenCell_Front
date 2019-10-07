@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom";
 import React, { Component } from 'react';
 import ReactCrop from "react-image-crop";
 import img1 from './images/img1.png';
