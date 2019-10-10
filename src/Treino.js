@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box, FormControl } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { DropzoneArea } from 'material-ui-dropzone';
 import MaterialTable from 'material-table';
@@ -40,6 +40,10 @@ const useStyles = makeStyles(theme => ({
   },
   tabela_classes: {
     width: '80%'
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120
   }
 }));
 
@@ -66,6 +70,15 @@ const data = [
 
 export default function Treino() {
   const classes = useStyles();
+  const [state, setState] = React.useState({
+    classe: ''
+  });
+  const handleChange = name => event => {
+    setState({
+      ...state,
+      [name]: event.target.value,
+    });
+  };
   return (
     <React.Fragment>
       <Paper className={classes.root}>
@@ -92,8 +105,11 @@ export default function Treino() {
           </Grid>
           <Grid item xs={12} sm={12}>
             <Box className={classes.tabela_classes}>
+            <FormControl className={classes.formControl}>
             <InputLabel htmlFor="classe">Classe</InputLabel>
-              <Select 
+              <Select
+                value={state.classe}
+                onChange={handleChange('classe')}
                 inputProps={{
                   name: 'Classe',
                   id: 'classe',
@@ -102,6 +118,7 @@ export default function Treino() {
                 <MenuItem value={20}>necrose</MenuItem>
                 <MenuItem value={30}>viva</MenuItem>
               </Select>
+              </FormControl>
             </Box>
           </Grid>
         </Grid>

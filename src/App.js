@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline'; 
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +11,12 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import logo from './images/logo.png';
-import {Link as LinkInto, animationScroll as scroll} from 'react-scroll';
+import { Link as LinkInto, animationScroll as scroll } from 'react-scroll';
+import post1 from './markdowns/blog-post.1.md';
+import ViewComfyIcon from '@material-ui/icons/ViewComfy';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import PublicIcon from '@material-ui/icons/Public';
+import FilterDramaIcon from '@material-ui/icons/FilterDrama';
 
 function Copyright() {
   return (
@@ -102,6 +107,23 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     minHeight: '100vh',
+  },
+  fixedHeightPaper: {
+    height: 150,
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column'
+  },
+  iconClass: {
+    marginRight: theme.spacing(2),
+    color: theme.palette.primary
+  },
+  cardTitle: {
+    marginBottom: theme.spacing(2)
+  },
+  texto: {
+    textAlign: 'justify'
   }
 }));
 
@@ -125,7 +147,7 @@ const featuredPosts = [
   },
 ];
 
-const posts = [];
+const posts = [post1];
 
 const archives = [
   'March 2020',
@@ -149,7 +171,7 @@ export default function App() {
 
   return (
     <div className={classes.root}>
-      <CssBaseline/>
+      <CssBaseline />
       <Container maxWidth="lg">
         <Toolbar className={classes.toolbar}>
           <LinkTo to="#">
@@ -161,7 +183,6 @@ export default function App() {
           <LinkInto to="section2" smooth={true} offset={-70} duration={1000}>
             <Button size="small">Sobre</Button>
           </LinkInto>
-          <Button variant="outlined" size="small">Cadastre-se</Button>
           <LinkTo to="/dashboard/" style={{ textDecoration: 'none' }}><Button variant="outlined" size="small">
             Entrar
           </Button></LinkTo>
@@ -202,29 +223,93 @@ export default function App() {
                       Analise suas amostras com Redes Neurais pré-treinadas ou treine a sua própria
                   </Typography>
                     <LinkTo to="/free/" style={{ textDecoration: 'none' }}><Link variant="subtitle1">
-                        Teste gratuito
+                      Teste gratuito
                     </Link>
                     </LinkTo>
                   </div>
                 </Grid>
               </Grid>
             </Paper>
-            <Paper className={classes.conteudoSobre} id="section2">
-                <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Grid container spacing={3}>
+              {/* Chart */}
+              <Grid item xs={12} md={4} lg={4}>
+                <Paper className={classes.fixedHeightPaper}>
+                  <Typography variant="h6" className={classes.cardTitle}>
+                    <ViewComfyIcon className={classes.iconClass} />
+                    Treine
+                </Typography>
+                  <Typography>
+                    Treine sua própria Rede Neural.
+                    Assim, ela se adequará ao seu problema.
+                </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={4} lg={4}>
+                <Paper className={classes.fixedHeightPaper}>
+                  <Typography variant="h6" className={classes.cardTitle}>
+                    <AccountTreeIcon className={classes.iconClass} />
+                    Classifique
+                </Typography>
+                  <Typography>
+                    Utilize a Rede Neural para classificar as células da sua imagem.
+                </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={4} lg={4}>
+                <Paper className={classes.fixedHeightPaper}>
+                  <Typography variant="h6" className={classes.cardTitle}>
+                    <PublicIcon className={classes.iconClass} />
+                    Explore
+                </Typography>
+                  <Typography>
+                    Utilize Redes Neurais pré-treinadas pela comunidade ou por nossa equipe.
+                </Typography>
+                </Paper>
+              </Grid>
+            </Grid>
+            <Grid container spacing={5} className={classes.mainGrid}>
+              {/* Main content */}
+              <Grid item xs={12} md={8}>
+                <Typography variant="h6" gutterBottom>
                   Sobre
-                </Typography>
-                <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                  Inteligencell é uma opção simples para que profissionais da área biomédica possam realizar
-                  análises de imagens de microscopia por meio de uma inteligência artificial que classificará um
-                  dataset de células/substâncias. Basta que ele escolha as imagens que quer analisar, fornecendo algumas
-                  informações e a ferramenta cuidará do resto. Em alguns minutos será entregue o dataset classificado.
+              </Typography>
+                <Typography gutterBottom className={classes.texto}>
+                  Intelligencell é uma opção simples para que profissionais da área biomédica possam realizar
+                    análises de imagens de microscopia por meio de uma inteligência artificial que classificará um
+                    dataset de células/substâncias.
+              </Typography>
+                <Typography gutterBottom className={classes.texto}>
                   Este sistema contém uma versão gratuita, que realiza uma análise simples e entrega
-                  o resultado com poucos detalhes. Já a versão paga permite que o usuário realize um número ilimitado
-                  de analises que serão salvas em sua conta. Existirá também nesta versão a possibilidade de salvar
-                  os seus datasets, consultar datasets públicos e realizar análises que retornarão mais detalhes
-                  sobre os objetos processados nas imagens, incluindo gráficos e estatísticas.
-                </Typography>
-            </Paper>
+                     o resultado com poucos detalhes. Já a versão paga permite que o usuário realize um número ilimitado
+                     de analises que serão salvas em sua conta. Existirá também nesta versão a possibilidade de salvar
+                     os seus datasets, consultar datasets públicos e realizar análises que retornarão mais detalhes
+                     sobre os objetos processados nas imagens, incluindo gráficos e estatísticas.
+              </Typography>
+                <Typography gutterBottom className={classes.texto}>
+                  Este sistema contém uma versão gratuita, que realiza uma análise simples e entrega
+                    o resultado com poucos detalhes. Já a versão paga permite que o usuário realize um número ilimitado
+                    de analises que serão salvas em sua conta.
+              </Typography>
+                <Typography gutterBottom className={classes.texto}>
+                  Existirá também nesta versão a possibilidade de salvar
+                    os seus datasets, consultar datasets públicos e realizar análises que retornarão mais detalhes
+                    sobre os objetos processados nas imagens, incluindo gráficos e estatísticas.
+              </Typography>
+              </Grid>
+              {/* End main content */}
+              {/* Sidebar */}
+              <Grid item xs={12} md={4}>
+                <Paper elevation={0} className={classes.sidebarAboutBox}>
+                  <Typography variant="h6" gutterBottom>
+                    Computação na Nuvem <FilterDramaIcon />
+                  </Typography>
+                  <Typography>
+                    Com o Intelligencell, não é necessária a instalação de programas ou de equipamentos. Cuidamos de tudo isso para você.
+                  </Typography>
+                </Paper>
+              </Grid>
+              {/* End sidebar */}
+            </Grid>
             {/* <Switch>
             <Route path="/" exact={true} component={Inicio} />
           </Switch> */}
