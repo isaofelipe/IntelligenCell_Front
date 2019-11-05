@@ -55,9 +55,9 @@ class Inferencia extends Component {
     this.state = {
       viewCompleted: false,
       activeItem: {
-        nome: "",
-        descricao: "",
-        ativo: false
+        modelo: "bloodCells",
+        imagem: null,
+        resultado: ""
       },
       testeList: []
     };
@@ -69,13 +69,30 @@ class Inferencia extends Component {
   };
 
   handleAnalisar(){
-    const item = { nome: "testePost", descricao: "ttt", ativo: true };
-    let a = axios.get("/api/testes/");
-    axios.post("/api/testes/", item).then(res => this.printRes(res));
+    // const item = { nome: "testePost", descricao: "ttt", ativo: true };
+    // let a = axios.get("/api/testes/");
+    // axios.post("/api/testes/", item).then(res => this.printRes(res));
+
+    let form_data = new FormData();
+    form_data.append('imagem', this.state.activeItem.imagem, this.state.activeItem.imagem.name);
+    form_data.append('modelo', this.state.activeItem.modelo);
+    form_data.append('resultado', this.state.activeItem.resultado);
+
+    axios.post("/api/analises/", form_data, {
+      'content-type': 'multipart/form-data'
+    }).then(res => this.printRes(res));
   };
 
   printRes(res){
     console.log(res);
+  }
+
+  handleChange(files){
+    let oActiveItem = this.state.activeItem;
+    oActiveItem.imagem = files[0];
+    this.setState({
+      activeItem: oActiveItem
+    });
   }
 
   render() {
@@ -85,13 +102,13 @@ class Inferencia extends Component {
         <Paper className={classes.root}>
           <Toolbar>
             <Typography variant="h6" id="tableTitle">
-              Apoptose - Análise
+              Células do Sangue - Análise
           </Typography>
           </Toolbar>
           <Grid container spacing={3} className={classes.form}>
             <Grid item xs={12} sm={12}>
               <Box className={classes.dropzone}>
-                <DropzoneArea dropzoneText="Selecione a imagem para análise" showFileNames="true" filesLimit={1} />
+                <DropzoneArea dropzoneText="Selecione a imagem para análise" showFileNames="true" filesLimit={1} onChange={this.handleChange.bind(this)}/>
               </Box>
             </Grid>
           </Grid>
@@ -100,51 +117,8 @@ class Inferencia extends Component {
               variant="contained"
               color="primary"
               className={classes.button}
-              onClick={this.handleAnalisar}>Analisar</Button>
+              onClick={this.handleAnalisar.bind(this)}>Analisar</Button>
           </div>
-        </Paper>
-        <Paper className={classes.root}>
-          <Toolbar>
-            <Typography variant="h6" id="tableTitle">
-              Resultados
-          </Typography>
-          </Toolbar>
-          <Grid container spacing={3} className={classes.form}>
-            <Grid item xs={12} sm={12}>
-              <img src={img1} className={classes.img} />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <Table className={classes.table} size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Apoptose</TableCell>
-                    <TableCell>Necrose</TableCell>
-                    <TableCell>Viva</TableCell>
-                    <TableCell>Total</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell component="th" scope="row">12</TableCell>
-                    <TableCell component="th" scope="row">15</TableCell>
-                    <TableCell component="th" scope="row">5</TableCell>
-                    <TableCell component="th" scope="row">32</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <BarChart width={600} height={300} data={this.data}
-                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="uv" fill="#8884d8" />
-              </BarChart>
-            </Grid>
-          </Grid>
         </Paper>
       </React.Fragment>
     )
