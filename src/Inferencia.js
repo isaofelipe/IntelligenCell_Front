@@ -51,7 +51,7 @@ const styles = theme => ({
 
 class Inferencia extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       viewCompleted: false,
       activeItem: {

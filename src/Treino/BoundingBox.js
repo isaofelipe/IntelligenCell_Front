@@ -9,7 +9,7 @@ import { DropzoneArea } from 'material-ui-dropzone';
 import MaterialTable from 'material-table';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Cropee from './Cropee';
+import Cropee from '../Cropee';
 import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles(theme => ({
@@ -36,10 +36,10 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(3),
   },
   img: {
-    width: '60%'
+    width: '100%'
   },
   tabela_classes: {
-    width: '80%'
+    width: '100%'
   },
   formControl: {
     margin: theme.spacing(1),
@@ -57,9 +57,8 @@ const rows = [
 ];
 
 const data = [
-  { name: 'Apoptose', uv: 12 },
-  { name: 'Necrose', uv: 15 },
-  { name: 'Viva', uv: 5 }
+  { name: 'Linfócito', uv: 12 },
+  { name: 'Monócito', uv: 15 }
 ];
 
 // const oCrop = {
@@ -68,7 +67,7 @@ const data = [
 //   aspect: 16 / 9
 // };
 
-export default function Treino() {
+export default function BoundingBox() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     classe: ''
@@ -82,28 +81,18 @@ export default function Treino() {
   return (
     <React.Fragment>
       <Paper className={classes.root}>
-        <Toolbar>
+      <Toolbar>
           <Typography variant="h6" id="tableTitle">
-            Novo Dataset
+            Imagem 1
           </Typography>
         </Toolbar>
         <Grid container spacing={3} className={classes.form}>
-          <Grid item xs={12} sm={12}>
-            <Box className={classes.dropzone}>
-              <DropzoneArea dropzoneText="Selecione o arquivo .zip do dataset" showFileNames="true" filesLimit="1" />
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <Box className={classes.tabela_classes}>
-              <MaterialTableDemo />
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={6} sm={6}>
             <Box className={classes.tabela_classes}>
               <Cropee />
             </Box>
           </Grid>
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={6} sm={6}>
             <Box className={classes.tabela_classes}>
             <FormControl className={classes.formControl}>
             <InputLabel htmlFor="classe">Classe</InputLabel>
@@ -114,9 +103,8 @@ export default function Treino() {
                   name: 'Classe',
                   id: 'classe',
                 }}>
-                <MenuItem value={10}>apoptose</MenuItem>
-                <MenuItem value={20}>necrose</MenuItem>
-                <MenuItem value={30}>viva</MenuItem>
+                <MenuItem value={10}>Linfócito</MenuItem>
+                <MenuItem value={20}>Monócito</MenuItem>
               </Select>
               </FormControl>
             </Box>
@@ -126,7 +114,7 @@ export default function Treino() {
           <Button
             variant="contained"
             color="primary"
-            className={classes.button}>Treinar e Criar Dataset</Button>
+            className={classes.button}>Salvar</Button>
         </div>
       </Paper>
     </React.Fragment>

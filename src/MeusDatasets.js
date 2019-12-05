@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import img1 from './images/img1.png';
 import {Link as LinkTo} from 'react-router-dom';
+import blood_Cells from './images/blood_cells.jpg';
 
 const useStyles = makeStyles(theme => ({
     appBarSpacer: theme.mixins.toolbar,
@@ -54,15 +55,15 @@ const useStyles = makeStyles(theme => ({
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
-              image={img1}
+              image={blood_Cells}
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant="h5" component="h2">
-                Apoptose
+                Células do sangue
                 </Typography>
               <Typography>
-                Modelo para contagem de células vivas, apoptóticas e necróticas
+                Modelo para contagem de células do sangue. Linfócitos, Eosinófilos, Monócitos, Neutrófilos.
                 </Typography>
             </CardContent>
             <CardActions>
@@ -70,10 +71,10 @@ const useStyles = makeStyles(theme => ({
               <Button size="small" color="primary">
                 Análise
                 </Button>
-              </LinkTo>
-              {/* <Button size="small" color="secondary">
+                <Button size="small" color="secondary">
                 Treino
-                </Button> */}
+                </Button>
+              </LinkTo>
             </CardActions>
           </Card>
         </Grid>

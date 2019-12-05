@@ -8,7 +8,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import blood_Cells from './images/blood_cells.jpg';
+import breast_cancer from './images/breast_cancer.jpg';
+import malaria from './images/malaria.jpg';
 import {Link as LinkTo} from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(theme => ({
     appBarSpacer: theme.mixins.toolbar,
@@ -50,7 +53,8 @@ const useStyles = makeStyles(theme => ({
   export default function MeusDatasets() {
     const classes = useStyles();
     return (
-        <Grid item xs={12} sm={6} md={4}>
+      <Grid container spacing={4}>
+        {/* <Grid item xs={12} sm={6} md={4}>
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
@@ -64,6 +68,7 @@ const useStyles = makeStyles(theme => ({
               <Typography>
                 Modelo para contagem de células do sangue. Linfócitos, Eosinófilos, Monócitos, Neutrófilos.
                 </Typography>
+                <Link href="https://www.kaggle.com/paultimothymooney/blood-cells" color="secondary">kaggle.com/uciml/breast-cancer-wisconsin-data</Link> 
             </CardContent>
             <CardActions>
             <LinkTo to="/dashboard/inferencia" style={{ textDecoration: 'none' }}>
@@ -73,6 +78,57 @@ const useStyles = makeStyles(theme => ({
               </LinkTo>
             </CardActions>
           </Card>
-        </Grid>
+        </Grid> */}
+        <Grid item xs={12} sm={6} md={4}>
+        <Card className={classes.card}>
+          <CardMedia
+            className={classes.cardMedia}
+            image={breast_cancer}
+            title="Image title"
+          />
+          <CardContent className={classes.cardContent}>
+            <Typography gutterBottom variant="h5" component="h2">
+              Câncer de mama - Maligno ou benigno
+              </Typography>
+            <Typography>
+              Modelo para previsão de tipo de câncer de mama.
+              </Typography>
+              <Link href="https://www.kaggle.com/uciml/breast-cancer-wisconsin-data" color="secondary">kaggle.com/uciml/breast-cancer-wisconsin-data</Link> 
+          </CardContent>
+          <CardActions>
+          <LinkTo to="/dashboard/inferencia" style={{ textDecoration: 'none' }}>
+            <Button size="small" color="primary">
+              Análise
+              </Button>
+            </LinkTo>
+          </CardActions>
+        </Card>
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+        <Card className={classes.card}>
+          <CardMedia
+            className={classes.cardMedia}
+            image={malaria}
+            title="Image title"
+          />
+          <CardContent className={classes.cardContent}>
+            <Typography gutterBottom variant="h5" component="h2">
+              Células infectadas - Malária
+              </Typography>
+            <Typography>
+              Modelo para detecção de células infectadas por malária
+            </Typography>
+            <Link href="https://www.kaggle.com/iarunava/cell-images-for-detecting-malaria" color="secondary">kaggle.com/iarunava/cell-images-for-detecting-malaria</Link> 
+          </CardContent>
+          <CardActions>
+          <LinkTo to="/dashboard/inferencia" style={{ textDecoration: 'none' }}>
+            <Button size="small" color="primary">
+              Análise
+              </Button>
+            </LinkTo>
+          </CardActions>
+        </Card>
+      </Grid>
+      </Grid>
     );
   }

@@ -1,78 +1,120 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Button } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import { Checkbox, TableBody, Table, TableCell, TableHead, TableRow, Paper, Typography, Avatar } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   root: {
-    width: '100%',
     marginTop: theme.spacing(3)
   },
   table: {
-    minWidth: 650,
   },
   form: {
-    marginLeft: theme.spacing(2),
     marginBottom: theme.spacing(2)
+  },
+  imagem_lista:{
+    height: "10em"
+  },
+});
+
+class Historico extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewCompleted: false,
+      analiseList: []
+    };
   }
-}));
 
-function createData(dataset, imagem, data) {
-  return { dataset, imagem, data };
-}
+  componentDidMount() {
+    this.refreshList();
+  }
 
-const rows = [
-  createData('Apoptose', 'Imagem1.png', '25/09/2019'),
-  createData('Apoptose', 'Imagem2.png', '24/09/2019'),
-];
+  refreshList = () => {
+    axios
+      .get("/api/analises/")
+      .then(res => this.setState({ analiseList: res.data }))
+      .catch(err => console.log(err));
+  };
 
-export default function Historico() {
-  const classes = useStyles();
+  displayCompleted = status => {
+    if (status) {
+      return this.setState({ viewCompleted: true });
+    }
+    return this.setState({ viewCompleted: false });
+  };
 
-  return (
-    <React.Fragment>
-      <Paper className={classes.root}>
-        <Toolbar>
-          <Typography variant="h6" id="tableTitle">
-            Histórico
-          </Typography>
-        </Toolbar>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Dataset</TableCell>
-              <TableCell>Imagem</TableCell>
-              <TableCell align="right">Data</TableCell>
-              <TableCell align="right">Ações</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map(row => (
-              <TableRow key={row.imagem}>
-                <TableCell component="th" scope="row">
-                  {row.dataset}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {row.imagem}
-                </TableCell>
-                <TableCell align="right">{row.data}</TableCell>
-                <TableCell align="right">
-                  <Button variant="contained" color="primary">Visualizar</Button>
-                </TableCell>
+  renderItems = () => {
+    const { classes } = this.props;
+    console.log(this.state.analiseList)
+    if (this.state.analiseList.length){
+      return this.state.analiseList.map(item => (
+        <TableRow key={item.id}>
+          <TableCell component="th" scope="row">
+            {item.id}
+          </TableCell>
+          <TableCell component="th" scope="row">
+            {item.modelo}
+          </TableCell>
+          <TableCell align="right">
+            <img src={item.imagem} className={classes.imagem_lista}/>
+          </TableCell>
+          <TableCell align="right">
+            <img src={item.imagem_analisada} className={classes.imagem_lista}/>
+          </TableCell>
+          <TableCell align="right">
+            <Checkbox
+              checked={item.analisada}
+              disabled="true"
+              color="primary"
+            />
+          </TableCell>
+          <TableCell align="right">
+            <Button variant="contained" color="primary">Visualizar</Button>
+          </TableCell>
+        </TableRow>
+      ));
+    }else{
+      return;
+    }
+    
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <React.Fragment>
+        <Paper className={classes.root}>
+          <Toolbar>
+            <Typography variant="h6" id="tableTitle">
+              Análises
+            </Typography>
+          </Toolbar>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>Modelo</TableCell>
+                <TableCell align="right">Imagem</TableCell>
+                <TableCell align="right">Imagem Analisada</TableCell>
+                <TableCell align="right">Analisada</TableCell>
+                <TableCell>Ações</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    </React.Fragment>
-  );
+            </TableHead>
+            <TableBody>
+              {this.renderItems()}
+            </TableBody>
+          </Table>
+        </Paper>
+      </React.Fragment>
+    )
+  }
 }
+Historico.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Historico);

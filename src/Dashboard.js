@@ -22,14 +22,14 @@ import MeusDatasets from './MeusDatasets';
 import Inferencia from './Inferencia';
 import DatasetsPublicos from './DatasetsPublicos';
 import Historico from './Historico';
+import BoundingBox from './Treino/BoundingBox';
 
 import { mainListItems, secondaryListItems } from './listItems';
-import Treino from './Treino';
+import Treino from './Treino/index.js';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         IntelligenCell
       </Link>{' '}
@@ -196,6 +196,7 @@ export default function Dashboard() {
             <Route path="/dashboard/treino" exact={true} component={Treino} />
             <Route path="/dashboard/datasetspublicos" exact={true} component={DatasetsPublicos} />
             <Route path="/dashboard/historico" exact={true} component={Historico} />
+            <Route path="/dashboard/boundingbox" exact={true} component={BoundingBox} />
           </Grid>
         </Container>
         <Copyright />

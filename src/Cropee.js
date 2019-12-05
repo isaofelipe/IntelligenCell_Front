@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactCrop from "react-image-crop";
-import img1 from './images/img1.png';
+import img1 from './images/imagens_album/BloodImage_00000.jpg';
 import "react-image-crop/dist/ReactCrop.css";
 
 class Cropee extends Component {
