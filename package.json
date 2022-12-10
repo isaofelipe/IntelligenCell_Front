@@ -11,7 +11,7 @@
     "markdown-to-jsx": "^6.10.3",
     "material-table": "^1.51.0",
     "material-ui-dropzone": "^2.4.1",
-    "qs": "^6.5.1",
+    "qs": "^6.5.3",
     "query-string": "^5.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
